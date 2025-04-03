@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iBoard Living PMS Dashboard</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #F5F5F5;
+      color: #4C2A85;
+    }
+
+    header {
+      background-color: #4C2A85;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(76,42,133,0.1);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .btn {
+      background-color: #FFC727;
+      border: none;
+      padding: 12px 20px;
+      color: #4C2A85;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #e6b623;
+    }
+
+    /* LOGIN MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .toggle-section {
+      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      background: #f0f0ff;
+      border-left: 4px solid #4C2A85;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>iBoard Living PMS</h1>
+  <p>Manage your rental properties, tenants, and services from one place</p>
+  <button class="btn" onclick="openModal()">Login</button>
+</header>
+
+<div class="container">
+  <div class="section">
+    <h2>📊 Interactive Dashboard</h2>
+    <p>Overview of your properties and tenant activity.</p>
+    <button class="btn" onclick="toggleSection()">Toggle Occupancy Data</button>
+    <div id="toggleData" class="toggle-section">
+      <strong>Unit A:</strong> Occupied <br>
+      <strong>Unit B:</strong> Vacant <br>
+      <strong>Unit C:</strong> Maintenance Requested
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📦 Add Property / API Integration Sample</h2>
+    <button class="btn" onclick="callAPI()">Fetch Demo Property Info</button>
+    <div id="apiResult" class="toggle-section"></div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username" />
+    <input type="password" placeholder="Password" />
+    <button class="btn" onclick="closeModal()">Submit</button>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('loginModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('loginModal').style.display = 'none';
+  }
+
+  function toggleSection() {
+    const section = document.getElementById('toggleData');
+    section.style.display = section.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function callAPI() {
+    // Simulating a property API call (placeholder only)
+    const resultBox = document.getElementById('apiResult');
+    resultBox.style.display = 'block';
+    resultBox.innerHTML = '📡 Loading property data...';
+
+    setTimeout(() => {
+      resultBox.innerHTML = `
+        <strong>Property Name:</strong> Emerald Heights<br>
+        <strong>Units:</strong> 15<br>
+        <strong>Status:</strong> 80% Occupied<br>
+        <strong>Avg. Rent:</strong> ₱12,000/month
+      `;
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
